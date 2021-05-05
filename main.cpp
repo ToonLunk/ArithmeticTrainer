@@ -16,7 +16,7 @@ using namespace std;
 
 void mainMenu(); // the main menu the player will interact with
 
-void playGame(); // holds the main game function, calls all functions
+void playGame(int difficulty); // holds the main game function, calls all functions
 
 int numGen(int diff); // generates 2 numbers and operates them together
 
@@ -27,15 +27,26 @@ void seeHighScore(); // allows the player to view the current highest score
 void mainMenu() // main menu for game; wll present user with options for the game
 {
     int choice; // holds the user's choice 
+    int difficulty; // holds how hard the game should start out
     cout << "\nPlease select an option: \n1. Play Game. \n2. View High Score. \n3. Quit Game" << endl;
     cin >> choice;
     if(choice == 1)
     {
         // play game
-        cout << "\nStarting Game..." << endl;
+        //cout << "\nStarting Game..." << endl;
+        cout << "\nPlease select your difficulty:\n1. Normal. \n2. Hard.\n3. Impossible." << endl;
+        cout << "\nEnter anything else to quit the game." << endl;
+        cin >> difficulty; // get difficulty from user
+
+        if (cin.fail() || (difficulty != 1 && difficulty != 2 && difficulty !=3)) // input validation
+        {
+            cout << "Thanks for playing!" << endl;
+            exit(2); // 2 = user entered wrong number in difficulty selection
+        }
+        
         cin.clear(); // clears input log
         cin.ignore(); // ignores dead space in input log
-        playGame(); // launch game
+        playGame(difficulty); // launch game
     } 
     else if (choice == 2)
     {
@@ -61,12 +72,13 @@ void mainMenu() // main menu for game; wll present user with options for the gam
     }   
 }
 
-void playGame() // this is where the game is played, score is kept, and difficulty set
+void playGame(int uDifficulty) // this is where the game is played, score is kept, and difficulty set
 {
     int answer; // holds the correct answer
     int userAnswer; // holds the user's answer
     int score = 1; // initialize the player's score
-    int difficulty = 10; // calculates difficluty; gets harder as game progresses
+    int difficulty = (100 * uDifficulty) - 90; // calculates difficluty; gets harder as game progresses- 
+                                       // Starts based on user's selected difficulty.
     bool isCorrect = true; // a flag to check if answer was correct
 
     while(isCorrect)
@@ -76,8 +88,8 @@ void playGame() // this is where the game is played, score is kept, and difficul
 
         if (answer == userAnswer)
         {
-            score += 9 * difficulty;
-            difficulty += 5;
+            score += 193 * uDifficulty; // add points based on difficulty
+            difficulty += (5 * uDifficulty); // increase difficulty based on user preference
             cout << "\nCorrect! Score = " << score << ", difficulty = " << difficulty << endl << endl;
         } else 
         {
