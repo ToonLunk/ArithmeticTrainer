@@ -13,6 +13,10 @@ from the main menu.
 
 >ROADMAP:
 
+Allow user to choose difficulty
+
+>UPDATE LOG:
+
 The program generates two random numbers. the user must figure out what the result of
 the numbers multiplied/divided/subtracted/added is. -DONE 27/04/2021
 
