@@ -83,15 +83,13 @@ void playGame() // this is where the game is played, score is kept, and difficul
         {
             cout << "Incorrect! Correct answer was: " << answer << endl;
             cout << "******************************************************" << endl;
-            cout << "*** Your Score: " << score << " point(s). Thanks for Playing! ***" << endl;
+            cout << "* Your Score: " << score << " point(s). Thanks for Playing! *" << endl;
             cout << "******************************************************" << endl;
             seeHighScore();
             addHighScore(score);
             isCorrect = false;
         }
-        
     }
-    
     mainMenu(); // go back to main menu
 }
 
